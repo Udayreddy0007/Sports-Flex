@@ -81,10 +81,9 @@ Payment gateway integration
 
 Search & filter functionality
 
-👨‍💻 Author
+## 👨‍💻 Author  
 
-Uday Sai Reddy
+**Uday Sai Reddy**  
 
-LinkedIn
-
-GitHub
+- [LinkedIn](https://www.linkedin.com/in/uday-reddy-01a1132a4/)  
+- [GitHub](https://github.com/Udayreddy0007)  
