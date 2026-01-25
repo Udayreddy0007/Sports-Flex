@@ -1,23 +1,47 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title> Sports flex LogIn </title>
-	<link href="styles/site9.css" type="text/css" rel="stylesheet" />
-	<link rel="shortcut icon" href="images/Sports flexlogo.png">
-	<body>
+    <meta charset="UTF-8">
+    <title>Sports Flex Login</title>
+    <link rel="stylesheet" href="styles/site11.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2 class="login-title">Welcome Back</h2>
+        <p class="login-subtitle">Sign in to your SportsFlex account</p>
 
-	</body>
-	<div class="login0">
-	<p> Enter Your Username And Password Below </p>
-</div>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="button" onclick="loginUser()">Login</button>
+            <div id="login-error"></div>
+        </form>
+    </div>
 
-<form id="form_id" method="post" name="myform">
-  <input type="text" id="username" placeholder="Username" required>
-  <input type="password" id="password" placeholder="Password" required>
-  <input type="button" id="submit" value="LOGIN" onclick="validate()">
-  <a href="forgotpassword.html" class="button111" >Forgot Password?</a>
-  <font color="red" size="4em"><label id="error"></label></font>
-</form>
+    <script>
+        function loginUser() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorDiv = document.getElementById('login-error');
 
-<script src="scripts/login.js"> </script>
+            // Get stored credentials
+            const storedUsername = localStorage.getItem('sf_username');
+            const storedPassword = localStorage.getItem('sf_password');
 
+            if (!username || !password) {
+                errorDiv.textContent = "Please enter both username and password.";
+                errorDiv.style.color = "red";
+                return;
+            }
+
+            if (username === storedUsername && password === storedPassword) {
+                // Login success
+                window.location.href = "clothing.html"; // Redirect to home page
+            } else {
+                errorDiv.textContent = "Invalid username or password!";
+                errorDiv.style.color = "red";
+            }
+        }
+    </script>
+</body>
 </html>

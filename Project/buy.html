@@ -1,34 +1,289 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title> Psports </title>
-	<link href="styles/site2.css" type="text/css" rel="stylesheet" />
-	<link rel="shortcut icon" href="images/psportslogo.png">
-<h1> Sign Up For More Offers And Discount </h1>
+  <meta charset="UTF-8">
+  <title>Psports - Secure Payment</title>
+  <link rel="shortcut icon" href="images/psportslogo.png">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
 
-<form id="form1">
-    <div class="form-container">
-      <div class="personal-information">
-        <h1>Payment Information</h1>
-      </div> <!-- end of personal-information -->
-      
-      <input id="input-field" type="text" name="streetaddress" required="required" autocomplete="on" maxlength="45" placeholder="Street Address"/>
-      <input id="column-left" type="text" name="city" required="required" autocomplete="on" maxlength="20" placeholder="City"/>
-      <input id="column-right" type="text" name="zipcode" required="required" autocomplete="on" pattern="[0-9]*" maxlength="5" placeholder="ZIP code"/>
-      <input id="input-field" type="email" name="email" required="required" autocomplete="on" maxlength="40" placeholder="Email"/>
-    
-        <div class="card-wrapper"></div>
-          <input id="column-left" type="text" name="first-name" placeholder="First Name"/>
-          <input id="column-right" type="text" name="last-name" placeholder="Surname"/>
-          <input id="input-field" type="text" name="number" placeholder="Card Number"/>
-          <input id="column-left" type="text" name="expiry" placeholder="MM / YY"/>
-          <input id="column-right" type="text" name="cvc" placeholder="CCV"/>
-		  <input id="column-right" type="text" name="productcode" placeholder="Product Code"/>
-		  <input id="column-right" type="number" name="contactnumber" placeholder="Contact Number"/>
-          <input id="input-button" type="submit" value="Submit"/>
-		  
-  </form>
-</div>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .checkout-container {
+      width: 100%;
+      max-width: 1100px;
+      background: #f1f3f6;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      padding: 20px;
+    }
+
+    .checkout-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .checkout-header img {
+      width: 50px;
+    }
+
+    .checkout-header h2 {
+      margin: 0;
+      color: #172337;
+    }
+
+    .checkout-header p {
+      margin: 0;
+      color: #565656;
+      font-size: 14px;
+    }
+
+    .checkout-body {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+    }
+
+    /* LEFT SIDEBAR */
+    .payment-sidebar {
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .sidebar-title {
+      font-weight: bold;
+      color: #172337;
+      padding: 12px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .method-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      cursor: pointer;
+      border-radius: 8px;
+      color: #333;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .method-item:hover {
+      background: #f1f3f6;
+    }
+
+    .method-item.active {
+      background: #eaf2ff;
+      color: #2874f0;
+      font-weight: bold;
+    }
+
+    /* RIGHT PANEL */
+    .payment-panel {
+      background: #fff;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .panel-section {
+      margin-bottom: 25px;
+    }
+
+    .panel-section h3 {
+      margin: 0 0 12px;
+      color: #172337;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: #2874f0;
+      box-shadow: 0 0 0 2px rgba(40,116,240,0.15);
+    }
+
+    .pay-btn {
+      width: 100%;
+      background: #fb641b;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .pay-btn:hover {
+      background: #e75b17;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(251,100,27,0.4);
+    }
+
+    .payment-form {
+      display: none;
+    }
+
+    .payment-form.active {
+      display: block;
+    }
+
+    select.input-field {
+      appearance: none;
+      background: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 10px center;
+      background-size: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .checkout-body {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="checkout-container">
+    <!-- HEADER -->
+    <div class="checkout-header">
+      <img src="images/psportslogo.png" alt="Psports Logo">
+      <div>
+        <h2>Secure Checkout</h2>
+        <p>Sign up for more offers and discounts</p>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <form id="form1">
+      <div class="checkout-body">
+
+        <!-- LEFT SIDEBAR -->
+        <div class="payment-sidebar">
+          <div class="sidebar-title">Payment Options</div>
+
+          <div class="method-item active" onclick="showForm('card', this)">💳 Card</div>
+          <div class="method-item" onclick="showForm('upi', this)">📱 UPI</div>
+          <div class="method-item" onclick="showForm('netbanking', this)">🏦 Net Banking</div>
+          <div class="method-item" onclick="showForm('wallet', this)">👛 Wallet</div>
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="payment-panel">
+
+          <!-- BILLING -->
+          <div class="panel-section">
+            <h3>Billing Details</h3>
+            <input class="input-field" type="text" name="streetaddress" required maxlength="45" placeholder="Street Address">
+            <div class="input-row">
+              <input class="input-field" type="text" name="city" required maxlength="20" placeholder="City">
+              <input class="input-field" type="text" name="zipcode" required pattern="[0-9]*" maxlength="6" placeholder="ZIP Code">
+            </div>
+            <input class="input-field" type="email" name="email" required maxlength="40" placeholder="Email">
+          </div>
+
+          <!-- CARD -->
+          <div id="card" class="payment-form active panel-section">
+            <h3>Card Details</h3>
+            <div class="input-row">
+              <input class="input-field" type="text" name="first-name" placeholder="First Name">
+              <input class="input-field" type="text" name="last-name" placeholder="Surname">
+            </div>
+            <input class="input-field" type="text" name="number" placeholder="Card Number" maxlength="16">
+            <div class="input-row">
+              <input class="input-field" type="text" name="expiry" placeholder="MM / YY" maxlength="5">
+              <input class="input-field" type="password" name="cvc" placeholder="CVV" maxlength="3">
+            </div>
+          </div>
+
+          <!-- UPI -->
+          <div id="upi" class="payment-form panel-section">
+            <h3>UPI Payment</h3>
+            <input class="input-field" type="text" placeholder="Enter UPI ID (e.g. name@bank)">
+          </div>
+
+          <!-- NET BANKING -->
+          <div id="netbanking" class="payment-form panel-section">
+            <h3>Net Banking</h3>
+            <select class="input-field">
+              <option>Select Your Bank</option>
+              <option>SBI</option>
+              <option>HDFC</option>
+              <option>ICICI</option>
+              <option>Axis Bank</option>
+              <option>Punjab National Bank</option>
+            </select>
+          </div>
+
+          <!-- WALLET -->
+          <div id="wallet" class="payment-form panel-section">
+            <h3>Wallet Payment</h3>
+            <select class="input-field">
+              <option>Select Wallet</option>
+              <option>Paytm</option>
+              <option>PhonePe</option>
+              <option>Google Pay</option>
+              <option>Amazon Pay</option>
+            </select>
+          </div>
+
+          <!-- EXTRA INFO -->
+          <div class="panel-section">
+            <div class="input-row">
+              <input class="input-field" type="text" name="productcode" placeholder="Product Code">
+              <input class="input-field" type="number" name="contactnumber" placeholder="Contact Number">
+            </div>
+          </div>
+
+          <!-- PAY BUTTON -->
+          <button type="submit" class="pay-btn">Pay Now</button>
+
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function showForm(type, el) {
+      document.querySelectorAll('.payment-form').forEach(form => form.classList.remove('active'));
+      document.getElementById(type).classList.add('active');
+
+      document.querySelectorAll('.method-item').forEach(item => item.classList.remove('active'));
+      el.classList.add('active');
+    }
+  </script>
+
+  <script src="scripts/buy.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 </body>
-<script src="scripts/buy.js"> </script>
-
 </html>

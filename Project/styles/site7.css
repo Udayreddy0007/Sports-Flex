@@ -1,84 +1,53 @@
 html { 
-  background: url("../images/puma.jpg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    background: url("../images/puma.jpg") no-repeat center center fixed; 
+    background-size: cover;
+    height: 100%;
+    margin: 0;
 }
 
-/*Main button class
-==========================*/
+/* Full-screen container with buttons on left and right */
+.ph-container {
+    display: flex;
+    justify-content: space-between;  /* Push buttons to edges */
+    align-items: center;
+    height: 100vh;                   /* Full viewport height */
+    padding: 0 50px;                 /* Space from edges */
+    box-sizing: border-box;
+}
+
+/* Main button style */
 .ph-button {
-	
     border-style: solid;
-    border-width: 0px 0px 3px;
-    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
-    color: #FFFFFF;	   
-    border-radius: 6px;
+    border-width: 0 0 3px;
+    color: #fff;	   
+    border-radius: 10px;
     cursor: pointer;
-    display: inline-block;
-    font-style: normal;
-    overflow: hidden;
-    text-align: center;
-    text-decoration: none;
-    text-overflow: ellipsis;
-    transition: all 200ms ease-in-out 0s;
-    white-space: nowrap;	
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-family: "Gotham Rounded A","Gotham Rounded B",Helvetica,Arial,sans-serif;
     font-weight: 700;	
-    padding: 19px 39px 18px;
-    font-size: 18px;
-	
+    padding: 30px 60px;
+    font-size: 22px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    min-width: 200px;
+    text-align: center;
 }
-/*Green
-==========================*/
+
+/* Colors */
 .ph-btn-green {
-
     border-color: #3AC162;
-	background-color: #5FCF80;
-
+    background-color: #5FCF80;
 }
-.ph-btn-green:hover, .ph-btn-green:focus, .ph-btn-green:active {
+.ph-btn-green:hover {
     background-color: #4BC970;
-    border-color: #3AC162;    
 }
 
-/*Blue
-==========================*/
 .ph-btn-blue {
-
     border-color: #326E99;
     background-color: #3F8ABF;
 }
-
-.ph-btn-blue:hover, .ph-btn-blue:focus, .ph-btn-blue:active {
+.ph-btn-blue:hover {
     background-color: #397CAC;
-    border-color: #326E99;   
-}
-
-.ph-container {
-  
-  margin: 0 auto;
-  display: inline;
-
-  
-}
-
-.ph-float {
-  
-  float: left;
-  width: 1300px;
-  padding: 10px;  
-  padding-top: 150px;  
-  text-align: center;
-
-}
-
-.ph-clear {
-  clear: both;
-   
-}
-/*styling currently opened tab-button*/
-.current {
-    background-color:grey;
 }
