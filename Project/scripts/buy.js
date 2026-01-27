@@ -9,7 +9,7 @@ document.getElementById("form1").addEventListener("submit", async function (e) {
   const order = await response.json();
 
   const options = {
-    key: "YOUR_KEY_ID_HERE", // replace with Razorpay Key ID
+    key: "rzp_test_S8834bSVfPWYvo", // replace with Razorpay Key ID
     amount: order.amount,
     currency: order.currency,
     name: "Psports",

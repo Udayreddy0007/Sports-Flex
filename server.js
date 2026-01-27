@@ -9,8 +9,8 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 const razorpay = new Razorpay({
-  key_id: "YOUR_KEY_ID_HERE",
-  key_secret: "YOUR_KEY_SECRET_HERE",
+  key_id: "rzp_test_S8834bSVfPWYvo",
+  key_secret: "0bBGhKSLrhqOgZH0L2jY8tjY",
 });
 
 app.post("/create-order", async (req, res) => {
