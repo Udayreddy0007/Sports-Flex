@@ -202,9 +202,6 @@
 	padding:50px;
 }
 
-	
-
-
 body{
   font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
@@ -227,7 +224,7 @@ body{
   
   /* gradients */
   background-color: #52b6ec;
-  *zoom: 1;
+  zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF52B6EC', endColorstr='#FF2E75CE');
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #52b6ec), color-stop(100%, #2e75ce));
   background-image: -webkit-linear-gradient(top, #52b6ec 0%, #2e75ce 100%);
@@ -243,7 +240,7 @@ body{
   box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2) inset, 0 1px 1px rgba(5, 64, 140, 0.2);
   
   background-color: #4fa6e4;
-  *zoom: 1;
+  zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF4FA6E4', endColorstr='#FF1462C4');
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4fa6e4), color-stop(100%, #1462c4));
   background-image: -webkit-linear-gradient(top, #4fa6e4 0%, #1462c4 100%);
@@ -251,16 +248,53 @@ body{
   background-image: -o-linear-gradient(top, #4fa6e4 0%, #1462c4 100%);
   background-image: linear-gradient(top, #4fa6e4 0%, #1462c4 100%);
 }
+
 .button:active {
   border-color: #094b84 #094b84 #0f4585;
   box-shadow: 0 1px 1px rgba(241, 243, 247, 0.2), 0 0 20px rgba(0, 0, 0, 0.5) inset;
   
   background-color: #1c7ec9;
-  *zoom: 1;
+  zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF1C7EC9', endColorstr='#FF2395D9');
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #1c7ec9), color-stop(100%, #2395d9));
   background-image: -webkit-linear-gradient(top, #1c7ec9 0%, #2395d9 100%);
   background-image: -moz-linear-gradient(top, #1c7ec9 0%, #2395d9 100%);
   background-image: -o-linear-gradient(top, #1c7ec9 0%, #2395d9 100%);
   background-image: linear-gradient(top, #1c7ec9 0%, #2395d9 100%);
+}
+
+/* ===================== */
+/* ✅ ADDED ENHANCEMENTS */
+/* ===================== */
+
+/* Hover zoom effect for product cards */
+.div1:hover, .div2:hover, .div3:hover, .div4:hover, .div5:hover,
+.div6:hover, .div7:hover, .div8:hover, .div9:hover, .div10:hover,
+.div11:hover, .div12:hover, .div13:hover, .div14:hover, .div15:hover,
+.div16:hover, .div17:hover, .div18:hover, .div19:hover, .div20:hover,
+.div21:hover, .div22:hover {
+  transform: scale(1.03);
+  transition: 0.3s;
+}
+
+/* Price styling */
+.div1 p:last-child, .div2 p:last-child, .div3 p:last-child,
+.div4 p:last-child, .div5 p:last-child, .div6 p:last-child,
+.div7 p:last-child, .div8 p:last-child, .div9 p:last-child,
+.div10 p:last-child, .div11 p:last-child, .div12 p:last-child,
+.div13 p:last-child, .div14 p:last-child, .div15 p:last-child,
+.div16 p:last-child, .div17 p:last-child, .div18 p:last-child,
+.div19 p:last-child, .div20 p:last-child, .div21 p:last-child,
+.div22 p:last-child {
+  color: green;
+  font-weight: bold;
+}
+
+/* Make product images look clickable */
+.div1 img, .div2 img, .div3 img, .div4 img, .div5 img,
+.div6 img, .div7 img, .div8 img, .div9 img, .div10 img,
+.div11 img, .div12 img, .div13 img, .div14 img, .div15 img,
+.div16 img, .div17 img, .div18 img, .div19 img, .div20 img,
+.div21 img, .div22 img {
+  cursor: pointer;
 }
