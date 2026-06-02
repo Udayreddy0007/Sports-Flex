@@ -57,16 +57,6 @@ Version Control: Git & GitHub
 
 (You can add screenshots of your homepage, product page, and cart UI here)
 
-📌 How to Run
-
-Clone the repository:
-
-git clone https://github.com/Udayreddy0007/Sports-Flex.git
-
-
-Open the project folder.
-
-Launch index.html in your browser.
 
 🌐 Live Demo
 
@@ -85,7 +75,6 @@ Search & filter functionality
 
 ## 👨‍💻 Author  
 
-**Uday Sai Reddy**  
-
-- [LinkedIn](https://www.linkedin.com/in/uday-reddy-01a1132a4/)  
-- [GitHub](https://github.com/Udayreddy0007)  
+**Avinash Reddy**  
+  
+- [GitHub](https://github.com/AvinashReddy6631/)  
