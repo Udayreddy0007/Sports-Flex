@@ -75,6 +75,6 @@ Search & filter functionality
 
 ## 👨‍💻 Author  
 
-**Avinash Reddy**  
+**Uday Reddy**  
   
-- [GitHub](https://github.com/AvinashReddy6631/)  
+- [GitHub](https://github.com/Udayreddy0007)  
