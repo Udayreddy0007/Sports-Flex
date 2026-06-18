@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Cart - Psports</title>
+  <link rel="shortcut icon" href="images/psportslogo.png">
+
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .cart-container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border-bottom: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background: #fb641b;
+      color: white;
+    }
+
+    .empty {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #fb641b;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .clear-btn {
+      background: #d9534f;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>🛒 My Cart / Order History</h2>
+
+<div class="cart-container">
+  <table id="cartTable">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price ($)</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div class="empty" id="emptyMsg"></div>
+
+  <a href="index.html" class="btn">⬅ Continue Shopping</a>
+  <button class="btn clear-btn" onclick="clearCart()">Clear Cart</button>
+</div>
+
+<script>
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  const tbody = document.querySelector("#cartTable tbody");
+  const emptyMsg = document.getElementById("emptyMsg");
+
+  if (orders.length === 0) {
+    emptyMsg.innerHTML = "No items purchased yet.";
+    document.getElementById("cartTable").style.display = "none";
+  } else {
+    orders.forEach(order => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${order.name}</td>
+        <td>${order.price}</td>
+        <td>${order.date}</td>
+      `;
+      tbody.appendChild(row);
+    });
+  }
+
+  function clearCart() {
+    if (confirm("Are you sure you want to clear cart?")) {
+      localStorage.removeItem("orders");
+      location.reload();
+    }
+  }
+</script>
+
+</body>
+</html>

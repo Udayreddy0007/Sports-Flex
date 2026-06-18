@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Psports - Secure Payment</title>
   <link rel="shortcut icon" href="images/psportslogo.png">
+
   <style>
     * {
       box-sizing: border-box;
@@ -17,118 +18,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
     }
 
     .checkout-container {
       width: 100%;
-      max-width: 1100px;
+      max-width: 600px;
       background: #f1f3f6;
       border-radius: 12px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-      padding: 20px;
-    }
-
-    .checkout-header {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-
-    .checkout-header img {
-      width: 50px;
-    }
-
-    .checkout-header h2 {
-      margin: 0;
-      color: #172337;
-    }
-
-    .checkout-header p {
-      margin: 0;
-      color: #565656;
-      font-size: 14px;
-    }
-
-    .checkout-body {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 20px;
-    }
-
-    /* LEFT SIDEBAR */
-    .payment-sidebar {
-      background: #fff;
-      border-radius: 10px;
-      padding: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    }
-
-    .sidebar-title {
-      font-weight: bold;
-      color: #172337;
-      padding: 12px;
-      border-bottom: 1px solid #e0e0e0;
-    }
-
-    .method-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px;
-      cursor: pointer;
-      border-radius: 8px;
-      color: #333;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    .method-item:hover {
-      background: #f1f3f6;
-    }
-
-    .method-item.active {
-      background: #eaf2ff;
-      color: #2874f0;
-      font-weight: bold;
-    }
-
-    /* RIGHT PANEL */
-    .payment-panel {
-      background: #fff;
-      border-radius: 10px;
-      padding: 25px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    }
-
-    .panel-section {
-      margin-bottom: 25px;
-    }
-
-    .panel-section h3 {
-      margin: 0 0 12px;
-      color: #172337;
-    }
-
-    .input-row {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .input-field {
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
-
-    .input-field:focus {
-      outline: none;
-      border-color: #2874f0;
-      box-shadow: 0 0 0 2px rgba(40,116,240,0.15);
+      padding: 30px;
+      text-align: center;
     }
 
     .pay-btn {
@@ -136,154 +34,104 @@
       background: #fb641b;
       color: #fff;
       border: none;
-      padding: 14px;
-      font-size: 16px;
+      padding: 15px;
+      font-size: 18px;
       font-weight: bold;
-      border-radius: 4px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .pay-btn:hover {
-      background: #e75b17;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(251,100,27,0.4);
-    }
-
-    .payment-form {
-      display: none;
-    }
-
-    .payment-form.active {
-      display: block;
-    }
-
-    select.input-field {
-      appearance: none;
-      background: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 10px center;
-      background-size: 16px;
-    }
-
-    @media (max-width: 900px) {
-      .checkout-body {
-        grid-template-columns: 1fr;
-      }
     }
   </style>
 </head>
+
 <body>
 
-  <div class="checkout-container">
-    <!-- HEADER -->
-    <div class="checkout-header">
-      <img src="images/psportslogo.png" alt="Psports Logo">
-      <div>
-        <h2>Secure Checkout</h2>
-        <p>Sign up for more offers and discounts</p>
-      </div>
-    </div>
+<div class="checkout-container">
+  <h2>Secure Checkout</h2>
 
-    <!-- BODY -->
-    <form id="form1">
-      <div class="checkout-body">
+  <form id="form1">
+    <button type="submit" class="pay-btn">Pay Now</button>
+  </form>
+</div>
 
-        <!-- LEFT SIDEBAR -->
-        <div class="payment-sidebar">
-          <div class="sidebar-title">Payment Options</div>
+<!-- Razorpay MUST be loaded FIRST -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-          <div class="method-item active" onclick="showForm('card', this)">💳 Card</div>
-          <div class="method-item" onclick="showForm('upi', this)">📱 UPI</div>
-          <div class="method-item" onclick="showForm('netbanking', this)">🏦 Net Banking</div>
-          <div class="method-item" onclick="showForm('wallet', this)">👛 Wallet</div>
-        </div>
+<script>
+  // 🔹 READ PRODUCT DATA FROM URL
+  const params = new URLSearchParams(window.location.search);
+  const productName = params.get("name");
+  const price = params.get("price"); // price in USD
 
-        <!-- RIGHT PANEL -->
-        <div class="payment-panel">
+  document.getElementById("form1").addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-          <!-- BILLING -->
-          <div class="panel-section">
-            <h3>Billing Details</h3>
-            <input class="input-field" type="text" name="streetaddress" required maxlength="45" placeholder="Street Address">
-            <div class="input-row">
-              <input class="input-field" type="text" name="city" required maxlength="20" placeholder="City">
-              <input class="input-field" type="text" name="zipcode" required pattern="[0-9]*" maxlength="6" placeholder="ZIP Code">
-            </div>
-            <input class="input-field" type="email" name="email" required maxlength="40" placeholder="Email">
-          </div>
+    try {
+      // 1️⃣ CREATE ORDER WITH DYNAMIC PRICE
+      const response = await fetch("http://localhost:5000/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          price: price,
+          productName: productName
+        })
+      });
 
-          <!-- CARD -->
-          <div id="card" class="payment-form active panel-section">
-            <h3>Card Details</h3>
-            <div class="input-row">
-              <input class="input-field" type="text" name="first-name" placeholder="First Name">
-              <input class="input-field" type="text" name="last-name" placeholder="Surname">
-            </div>
-            <input class="input-field" type="text" name="number" placeholder="Card Number" maxlength="16">
-            <div class="input-row">
-              <input class="input-field" type="text" name="expiry" placeholder="MM / YY" maxlength="5">
-              <input class="input-field" type="password" name="cvc" placeholder="CVV" maxlength="3">
-            </div>
-          </div>
+      const order = await response.json();
 
-          <!-- UPI -->
-          <div id="upi" class="payment-form panel-section">
-            <h3>UPI Payment</h3>
-            <input class="input-field" type="text" placeholder="Enter UPI ID (e.g. name@bank)">
-          </div>
+      // 2️⃣ RAZORPAY OPTIONS
+      const options = {
+        key: "rzp_test_S9NJPJnQOgjt28",
+        amount: order.amount,
+        currency: "INR",
+        name: "Psports",
+        description: productName,
+        order_id: order.id,
 
-          <!-- NET BANKING -->
-          <div id="netbanking" class="payment-form panel-section">
-            <h3>Net Banking</h3>
-            <select class="input-field">
-              <option>Select Your Bank</option>
-              <option>SBI</option>
-              <option>HDFC</option>
-              <option>ICICI</option>
-              <option>Axis Bank</option>
-              <option>Punjab National Bank</option>
-            </select>
-          </div>
+        handler: async function (response) {
+          // 3️⃣ VERIFY PAYMENT
+          const verify = await fetch("http://localhost:5000/verify-payment", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(response)
+          });
 
-          <!-- WALLET -->
-          <div id="wallet" class="payment-form panel-section">
-            <h3>Wallet Payment</h3>
-            <select class="input-field">
-              <option>Select Wallet</option>
-              <option>Paytm</option>
-              <option>PhonePe</option>
-              <option>Google Pay</option>
-              <option>Amazon Pay</option>
-            </select>
-          </div>
+          const result = await verify.json();
 
-          <!-- EXTRA INFO -->
-          <div class="panel-section">
-            <div class="input-row">
-              <input class="input-field" type="text" name="productcode" placeholder="Product Code">
-              <input class="input-field" type="number" name="contactnumber" placeholder="Contact Number">
-            </div>
-          </div>
+          if (result.success) {
 
-          <!-- PAY BUTTON -->
-          <button type="submit" class="pay-btn">Pay Now</button>
+            /* ===============================
+               ✅ ADDED: SAVE ORDER TO CART
+            =============================== */
+            const orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-        </div>
-      </div>
-    </form>
-  </div>
+            orders.push({
+              name: productName,
+              price: price,
+              date: new Date().toLocaleString()
+            });
 
-  <script>
-    function showForm(type, el) {
-      document.querySelectorAll('.payment-form').forEach(form => form.classList.remove('active'));
-      document.getElementById(type).classList.add('active');
+            localStorage.setItem("orders", JSON.stringify(orders));
+            /* =============================== */
 
-      document.querySelectorAll('.method-item').forEach(item => item.classList.remove('active'));
-      el.classList.add('active');
+            alert("✅ Payment Successful");
+            window.location.href = "passwordsuccess.html"; // ✅ changed from password page
+          } else {
+            alert("❌ Payment Verification Failed");
+          }
+        },
+
+        theme: { color: "#fb641b" }
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.open();
+
+    } catch (err) {
+      alert("Server error. Try again.");
+      console.error(err);
     }
-  </script>
-
-  <script src="scripts/buy.js"></script>
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  });
+</script>
 
 </body>
 </html>
